@@ -11,7 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Login\" />
     <Folder Include="Views\Cadastrar Produto\" />
     <Folder Include="Views\Editar Produto\" />
   </ItemGroup>

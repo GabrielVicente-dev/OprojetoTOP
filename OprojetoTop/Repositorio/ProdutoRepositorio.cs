@@ -3,11 +3,11 @@ using OprojetoTop.Models;
 using System.Configuration;
 using System.Data;
 
-namespace ProjetoEcommerce.Repositorio
+namespace OprojetoTop.Repositorio
 {
     public class ProdutoRepositorio(IConfiguration configuration)
     {
-        private readonly string _conexaoMySQL = configuration.GetConnectionString("ConexaoMySQL");
+        private readonly string _conexaoMySQL = configuration.GetConnectionString("conexaoMySQL");
 
 
         public void CadastrarProduto(Produto produto)

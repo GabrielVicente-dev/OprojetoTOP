@@ -6,10 +6,10 @@ namespace OprojetoTop.Controllers
 {
     public class UsuarioController : Controller
     {
-        private readonly UsuarioRepositorio _usuarioRepositorio;
-        public UsuarioController(UsuarioRepositorio usuarioRepositorio)
+        private readonly LoginRepositorio _loginRepositorio;
+        public UsuarioController(LoginRepositorio loginRepositorio)
         {
-            _usuarioRepositorio = usuarioRepositorio;
+            _loginRepositorio = loginRepositorio;
         }
 
         public IActionResult Login()
@@ -26,7 +26,7 @@ namespace OprojetoTop.Controllers
         public IActionResult Login(string email, string senha)
         {
 
-            var usuario = _usuarioRepositorio.ObterUsuario(email);
+            var usuario = _loginRepositorio.ObterLogin(email);
 
             if (usuario != null && usuario.Senha == senha)
             {
@@ -41,7 +41,7 @@ namespace OprojetoTop.Controllers
         {
             Usuario usuario = new Usuario { Nome = nome, Email = email, Senha = senha };
 
-            _usuarioRepositorio.Cadastrar(usuario);
+            _LoginRepositorio.Logar(usuario);
 
             return RedirectToAction("Login", "Usuario");
         }

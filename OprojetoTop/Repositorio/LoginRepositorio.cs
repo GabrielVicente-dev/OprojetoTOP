@@ -9,7 +9,7 @@ namespace OprojetoTop.Repositorio
         public class LoginRepositorio(IConfiguration configuration)
         {
             // Declara uma variável privada somente leitura para armazenar a string de conexão com o MySQL
-            private readonly string _conexaoMySQL = configuration.GetConnectionString("ConexaoMySQL");
+            private readonly string _conexaoMySQL = configuration.GetConnectionString("conexaoMySQL");
 
 
             // Método para cadastrar um novo cliente no banco de dados
@@ -70,7 +70,7 @@ namespace OprojetoTop.Repositorio
         }
 
             // Método para listar todos os clientes do banco de dados
-            public IEnumerable<Usuario> TodosClientes()
+            public IEnumerable<Usuario> TodosUsuarios()
             {
                 // Cria uma nova lista para armazenar os objetos Cliente
                 List<Usuario> Usuariolist = new List<Usuario>();
@@ -81,7 +81,7 @@ namespace OprojetoTop.Repositorio
                     // Abre a conexão com o banco de dados MySQL
                     conexao.Open();
                     // Cria um novo comando SQL para selecionar todos os registros da tabela 'cliente'
-                    MySqlCommand cmd = new MySqlCommand("SELECT * from cliente", conexao);
+                    MySqlCommand cmd = new MySqlCommand("SELECT * from usuario", conexao);
 
                     // Cria um adaptador de dados para preencher um DataTable com os resultados da consulta
                     MySqlDataAdapter da = new MySqlDataAdapter(cmd);
@@ -106,11 +106,24 @@ namespace OprojetoTop.Repositorio
                     }
                     // Retorna a lista de todos os clientes
                     return Usuariolist;
+
+
+
+
+
+
+
+
+
+
+
+
+
                 }
             }
 
             // Método para buscar um cliente específico pelo seu código (Codigo)
-            public Usuario ObterCliente(int Codigo)
+            public Usuario ObterUsuario(int Codigo)
             {
                 // Bloco using para garantir que a conexão seja fechada e os recursos liberados após o uso
                 using (var conexao = new MySqlConnection(_conexaoMySQL))
