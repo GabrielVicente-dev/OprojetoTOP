@@ -6,7 +6,7 @@ using System.Data;
 namespace OprojetoTop.Repositorio
 {
        // Define a classe responsável por interagir com os dados de clientes no banco de dados
-        public class ClienteRepositorio(IConfiguration configuration)
+        public class LoginRepositorio(IConfiguration configuration)
         {
             // Declara uma variável privada somente leitura para armazenar a string de conexão com o MySQL
             private readonly string _conexaoMySQL = configuration.GetConnectionString("ConexaoMySQL");
@@ -21,7 +21,7 @@ namespace OprojetoTop.Repositorio
                     // Abre a conexão com o banco de dados MySQL
                     conexao.Open();
                     // Cria um novo comando SQL para inserir dados na tabela 'cliente'
-                    MySqlCommand cmd = new MySqlCommand("insert into cliente (Nome,EmailCli) values (@nome, @email)", conexao); // @: PARAMETRO
+                    MySqlCommand cmd = new MySqlCommand("insert into cliente (Nome,Email, values (@nome, @email)", conexao); // @: PARAMETRO
                                                                                                                                                  // Adiciona um parâmetro para o nome, definindo seu tipo e valor
                     cmd.Parameters.Add("@nome", MySqlDbType.VarChar).Value = usuario.Nome;
                     // Adiciona um parâmetro para o telefone, definindo seu tipo e valor

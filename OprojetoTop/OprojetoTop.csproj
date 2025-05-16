@@ -10,4 +10,10 @@
     <PackageReference Include="MySql.Data" Version="9.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Login\" />
+    <Folder Include="Views\Cadastrar Produto\" />
+    <Folder Include="Views\Editar Produto\" />
+  </ItemGroup>
+
 </Project>

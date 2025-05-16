@@ -7,9 +7,8 @@ builder.Services.AddControllersWithViews();
 
 // INJEÇÃO DE DEPENDENCIA 
 
-builder.Services.AddScoped<ClienteRepositorio>();
+builder.Services.AddScoped<LoginRepositorio>();
 builder.Services.AddScoped<ProdutoRepositorio>();
-builder.Services.AddScoped<UsuarioRepositorio>();
 
 
 
