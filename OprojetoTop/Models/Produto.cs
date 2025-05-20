@@ -3,8 +3,8 @@
     public class Produto
     {
         public int IdProd { get; set; }
-        public string NomeProd { get; set; }
-        public string DescProd { get; set; }
+        public string? NomeProd { get; set; }
+        public string? DescProd { get; set; }
         public int quantidade { get; set; }
     }
 }
