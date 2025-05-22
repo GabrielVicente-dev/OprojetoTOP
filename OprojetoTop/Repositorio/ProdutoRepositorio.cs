@@ -72,7 +72,7 @@ namespace OprojetoTop.Repositorio
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
-                MySqlCommand cmd = new MySqlCommand("SELECT * from Produto where CodProd=@CodProd ", conexao);
+                MySqlCommand cmd = new MySqlCommand("SELECT * from Produto where Id=@CodProd ", conexao);
                 cmd.Parameters.AddWithValue("@IdProd", Codigo);
                 MySqlDataAdapter da = new MySqlDataAdapter(cmd);
                 MySqlDataReader dr;
