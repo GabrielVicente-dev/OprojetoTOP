@@ -22,12 +22,12 @@ namespace OprojetoTop.Repositorio
                 // Abre a conexão com o banco de dados MySQL
                 conexao.Open();
                 // Cria um novo comando SQL para inserir dados na tabela 'cliente'
-                MySqlCommand cmd = new MySqlCommand("insert into usuario (Nome,Emai) values (@nome,  @email)", conexao); // @: PARAMETRO
+                MySqlCommand cmd = new MySqlCommand("insert into Usuario (Nome,Email) values (@Nome,  @Email)" + " where Id=@Id ", conexao); // @: PARAMETRO
                                                                                                                                                  // Adiciona um parâmetro para o nome, definindo seu tipo e valor
-                cmd.Parameters.Add("@nome", MySqlDbType.VarChar).Value = usuario.Nome;
+                cmd.Parameters.Add("@Nome", MySqlDbType.VarChar).Value = usuario.Nome;
                 // Adiciona um parâmetro para o telefone, definindo seu tipo e valor
                 // Adiciona um parâmetro para o email, definindo seu tipo e valor
-                cmd.Parameters.Add("@email", MySqlDbType.VarChar).Value = usuario.Email;
+                cmd.Parameters.Add("@Email", MySqlDbType.VarChar).Value = usuario.Email;
                 // Executa o comando SQL de inserção e retorna o número de linhas afetadas
                 cmd.ExecuteNonQuery();
                 // Fecha explicitamente a conexão com o banco de dados (embora o 'using' já faça isso)
@@ -46,14 +46,14 @@ namespace OprojetoTop.Repositorio
                     // Abre a conexão com o banco de dados MySQL
                     conexao.Open();
                     // Cria um novo comando SQL para atualizar dados na tabela 'cliente' com base no código
-                    MySqlCommand cmd = new MySqlCommand("Update usuario set Nome=@nome, , Email=@email " + " where Id=@codigo ", conexao);
+                    MySqlCommand cmd = new MySqlCommand("Update Usuario set Nome=@Nome, , Email=@Email " + " where Id=@Id ", conexao);
                     // Adiciona um parâmetro para o código do cliente a ser atualizado, definindo seu tipo e valor
-                    cmd.Parameters.Add("@codigo", MySqlDbType.Int32).Value = usuario.Id;
+                    cmd.Parameters.Add("@Id", MySqlDbType.Int32).Value = usuario.Id;
                     // Adiciona um parâmetro para o novo nome, definindo seu tipo e valor
-                    cmd.Parameters.Add("@nome", MySqlDbType.VarChar).Value = usuario.Nome;
+                    cmd.Parameters.Add("@Nome", MySqlDbType.VarChar).Value = usuario.Nome;
                     // Adiciona um parâmetro para o novo telefone, definindo seu tipo e valor
                     // Adiciona um parâmetro para o novo email, definindo seu tipo e valor
-                    cmd.Parameters.Add("@email", MySqlDbType.VarChar).Value = usuario.Email;
+                    cmd.Parameters.Add("@Email", MySqlDbType.VarChar).Value = usuario.Email;
                     // Executa o comando SQL de atualização e retorna o número de linhas afetadas
                     //executa e verifica se a alteração foi realizada
                     int linhasAfetadas = cmd.ExecuteNonQuery();
@@ -64,7 +64,7 @@ namespace OprojetoTop.Repositorio
             catch (MySqlException ex)
             {
                 // Logar a exceção (usar um framework de logging como NLog ou Serilog)
-                Console.WriteLine($"Erro ao atualizar usuario: {ex.Message}");
+                Console.WriteLine($"Erro ao atualizar Usuario: {ex.Message}");
                 return false; // Retorna false em caso de erro
 
             }
@@ -120,7 +120,7 @@ namespace OprojetoTop.Repositorio
                 // Abre a conexão com o banco de dados MySQL
                 conexao.Open();
                 // Cria um novo comando SQL para selecionar um registro da tabela 'cliente' com base no código
-                MySqlCommand cmd = new MySqlCommand("SELECT * from Usuario where Id=@codigo ", conexao);
+                MySqlCommand cmd = new MySqlCommand("SELECT * from Usuario where Email=@Email ", conexao);
 
                 // Adiciona um parâmetro para o código a ser buscado, definindo seu tipo e valor
                 cmd.Parameters.AddWithValue("@Email",Email );
@@ -145,7 +145,6 @@ namespace OprojetoTop.Repositorio
                     usuario.Nome = (string)(dr["Nome"]); // propriedade Nome e passando string
                     //usuario.TelCli = (string)(dr["TelCli"]); //propriedade telefone e passando string
                     usuario.Email = (string)(dr["Email"]); //propriedade email e passando string
-                    usuario.Senha = (string)(dr["Senha"]); //propriedade email e passando string
                 }
                 // Retorna o objeto Cliente encontrado (ou um objeto com valores padrão se não encontrado)
                 return usuario;
@@ -163,7 +162,7 @@ namespace OprojetoTop.Repositorio
                 conexao.Open();
 
                 // Cria um novo comando SQL para deletar um registro da tabela 'cliente' com base no código
-                MySqlCommand cmd = new MySqlCommand("delete from usuario where Id=@id", conexao);
+                MySqlCommand cmd = new MySqlCommand("delete from Usuario where Id=@Id", conexao);
 
                 // Adiciona um parâmetro para o código a ser excluído, definindo seu tipo e valor
                 cmd.Parameters.AddWithValue("@Id", Id);

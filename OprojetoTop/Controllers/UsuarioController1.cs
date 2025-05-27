@@ -44,7 +44,7 @@ namespace OprojetoTop.Controllers
             {
                 // Autenticação bem-sucedida
                 // Redireciona o usuário para a action "Index" do Controller "Cliente".
-                return RedirectToAction("Login", "Usuario");
+                return RedirectToAction("Site", "Usuario");
             }
             /* Se a autenticação falhar (usuário não encontrado ou senha incorreta):
              Adiciona um erro ao ModelState. ModelState armazena o estado do modelo e erros de validação.
